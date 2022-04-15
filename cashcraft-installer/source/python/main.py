@@ -1,10 +1,13 @@
+from cgi import test
 from re import T
+import threading
 import tkinter as tk
 from tkinter.constants import DISABLED
 from json import loads, dumps
 from os import environ, path, mkdir, system
 from shutil import copyfile
 import requests
+from time import sleep
 
 def internet_fail_screen():
     window = tk.Tk()
@@ -19,28 +22,138 @@ def internet_fail_screen():
 
     window.mainloop()
 
-print('Loading installer file...')
-installerFile = {}
+def install_fail_screen():
+    window = tk.Tk()
+    window.title('Installer Failed')
+
+    window.geometry("325x50")
+    window.resizable(False, False)
+
+    tk.Label(text="The install process has failed.").pack()
+
+    tk.Button(window, text="Exit", command=window.destroy).pack()
+
+    window.mainloop()
+
+def test_screen():
+    window = tk.Tk()
+    window.title('Installer Failed')
+
+    window.geometry("325x50")
+    window.resizable(False, False)
+
+    tk.Label(text="The install process has failed.").pack()
+
+    tk.Button(window, text="Exit", command=window.destroy).pack()
+
+    window.mainloop()
+
+def download_package():
+
+    for file in addon_package['files']:
+        print('\t\t\t{}'.format(file[0]))
+        r = requests.get(file[1], allow_redirects=True)
+        open(dataPath + '\\' + file[0], 'wb').write(r.content)
+
+    confirm_window.destroy()
+
+def confirm_package():
+
+    global confirm_window
+    global yes_btn
+    global no_btn
+
+    confirm_window = tk.Tk()
+    confirm_window.title('Install addon?')
+
+    confirm_window.geometry("400x100")
+    confirm_window.resizable(True, False)
+
+    tk.Label(confirm_window, text="Do you want to install this extra package?").pack()
+    tk.Label(confirm_window, text=addon_package['name'], font='Helvetica 16 bold').pack()
+
+    yes_btn = tk.Button(confirm_window, text="Yes", command=download_package).pack()
+    no_btn = tk.Button(confirm_window, text="No", command=confirm_window.destroy).pack()
+
+    confirm_window.mainloop()
+
+installer_file = {}
 try:
-    installerFile = loads(requests.get("https://raw.githubusercontent.com/CoolCash1/CashCraft/main/client/installer.json?token=GHSAT0AAAAAABQTZA3SO24S3Z2OB5WNSHSYYPXLFFQ", allow_redirects=True).content)
+    if False:
+        installer_file = loads(open('C:\\Users\\casht\\Projects\\mc-pinger-2000-discord-edition\\files\\cashcraft-installer\\client\\installer.json').read())
+
+    else:
+        print('Downloading installer file...')
+        installer_file = loads(requests.get("https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/installer.json", allow_redirects=True).content)
 except:
     print('Download Failed!')
     internet_fail_screen()
 
-# installerFile = loads(open('client\installer.json', 'r').read())
+# installer_file = loads(open('client\installer.json', 'r').read())
 print('Starting App...')
-versionNames = []
-for version in installerFile['versions'].values():
-    versionNames.append(version['name'])
+
+first_server_name = list(installer_file['servers'])[-1]
+print(first_server_name)
+
+selected_server = installer_file['servers'][first_server_name]
+selected_version = list(selected_server['versions'])[-1]
+
+server_list = []
+for version in installer_file['servers']:
+    server_list.append(version)
+
+version_list = []
+for version in selected_server['versions'].values():
+    version_list.append(version['name'])
+
+print('Server List: ', server_list)
+print('Version List: ', version_list)
+
 dataPath = "{}\\.cashcraft".format(environ.get('APPDATA'))
 mcPath = "{}\\.minecraft".format(environ.get('APPDATA'))
+
+def switch_server(new_server_name):
+
+    global selected_server
+    selected_server = installer_file['servers'][new_server_name]
+
+    global selected_version
+    selected_version = list(selected_server['versions'].values())[-1]
+    version_clicked.set( selected_version['name'] )
+
+    global version_list
+    version_list = []
+    for version in selected_server['versions'].values():
+        version_list.append(version['name'])
+
+    global version_drop
+    version_drop['menu'].delete(0, 'end')
+
+    for version in version_list:
+        version_drop['menu'].add_command(label=version, command=lambda v=version: version_clicked.set(v))
+
+def start_install():
+    install_button['text'] = 'Installing...'
+    install_button['state'] = 'disabled'
+    install_thread = threading.Thread(target=try_install)
+    install_thread.start()
+
+def try_install():
+    try:
+        install()
+        install_button['text'] = 'Install Finished!'
+
+    except:
+        print('Install Failed!')
+        internet_fail_screen()
+        install_button['text'] = 'Install Failed!'
 
 def install():
     if not path.exists(mcPath + "\\launcher_profiles.json"):
         print('MC Launcher Not Detected! Quiting')
         return 
     print('Installing Cashtons Minecraft Server Client. Please Wait...')
-    selectedVersion = installerFile['versions'][clicked.get()]
+    selectedVersion = installer_file['servers'][server_clicked.get()]['versions'][version_clicked.get()]
     if not path.exists(dataPath):
         print('\tCreating Data Folder... ({})'.format(dataPath))
         mkdir(dataPath)
@@ -79,25 +192,11 @@ def install():
             open(dataPath + '\\' + file[0], 'wb').write(r.content)
 
     print('\n\tTime to install optional features.')
-    print('\tPlease respond with "y" (yes) or "n" (no) to each question.')
 
     for contentItem in selectedVersion['content']['optional']:
-        while True:
-            resp = input('\t\tWould you like to install {}? '.format(contentItem['name']))
-            if resp.lower() == 'y' or resp.lower() == 'yes':
-                for file in contentItem['files']:
-                    print('\t\t\t{}'.format(file[0]))
-                    r = requests.get(file[1], allow_redirects=True)
-                    open(dataPath + '\\' + file[0], 'wb').write(r.content)
-
-                break
-
-            elif resp.lower() == 'n' or resp.lower() == 'no':
-                break
-
-            else: 
-                print('\t\tInvalid Response')
-                print('\t\tPlease respond with "y" (yes) or "n" (no) to each question.\n')
+        global addon_package
+        addon_package = contentItem
+        confirm_package()
 
     print('Adding profile to launcher')
     launcherJson = loads(open(mcPath + '\\launcher_profiles.json').read())
@@ -126,6 +225,7 @@ def install():
     print('Done!')
 
 
+
 window = tk.Tk()
 window.title('Installer')
 # window.iconbitmap('icon.ico')
@@ -134,14 +234,20 @@ window.resizable(False, False)
 
 tk.Label(text="CashCraft Installer").pack()
 
-clicked = tk.StringVar()
-clicked.set( versionNames[-1] )
-drop = tk.OptionMenu( window , clicked , *versionNames )
-drop.pack()
+server_clicked = tk.StringVar()
+server_clicked.set( server_list[-1] )
+server_drop = tk.OptionMenu( window , server_clicked , *server_list, command=switch_server )
+server_drop.pack()
+
+version_clicked = tk.StringVar()
+version_clicked.set( version_list[-1] )
+version_drop = tk.OptionMenu( window , version_clicked , *version_list )
+version_drop.pack()
 
 frame = tk.Frame(window)  
 frame.pack()
 # tk.Button(frame, text="Optional Resources").pack(side=tk.RIGHT)
-tk.Button(frame, text="Install", command=install).pack(side=tk.LEFT)
+install_button = tk.Button(frame, text="Install", command=start_install)
+install_button.pack(side=tk.RIGHT)
 
 window.mainloop()
