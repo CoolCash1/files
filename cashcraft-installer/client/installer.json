@@ -1,0 +1,139 @@
+{
+    "latestVersion": 1,
+    "servers": {
+        "Modded Server": {
+            "description": "Cashtons Modded Minecraft Server. 2022-04-15",
+            "serer_address": "rdpc-chat.duckdns.org:25565",
+            "versions": [
+                {
+                    "version": 1,
+                    "loaderInstall": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/0.7.4/fabric-installer-0.7.4.jar",
+                    "name": "Version 1.0",
+                    "icon": "data:image/png;base64,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",
+                    "createFolders": [
+                        "mods",
+                        "shaderpacks",
+                        "resourcepacks"
+                    ],
+                    "deleteFolders": [
+                        "mods"
+                    ],
+                    "loaderArgs": "client -noprofile -mcversion 1.18.1 -loader 0.12.12",
+                    "mcVersionId": "fabric-loader-0.12.12-1.18.1",
+                    "content": {
+                        "required": [
+                            {
+                                "name": "Fabric API",
+                                "files": [
+                                    [
+                                        "mods\\fabric-api-0.46.1+1.18.jar",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937556318535954452/fabric-api-0.46.11.18.jar"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "Voice Chat",
+                                "files": [
+                                    [
+                                        "mods\\voicechat-fabric-1.18.1-2.2.10.jar",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937556363662487562/voicechat-fabric-1.18.1-2.2.10.jar"
+                                    ]
+                                ]
+                            }
+                        ],
+                        "optional": [
+                            {
+                                "name": "Kaleb's Messed Up Textures",
+                                "files": [
+                                    [
+                                        "resourcepacks\\KalebsMessedUpTextures.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937556850256261150/Kalebs_Messed_Up_Textures.zip"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "Cashton's Vanilla Tweaks",
+                                "files": [
+                                    [
+                                        "resourcepacks\\CashtonsVanillaTeaks.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937556907399446628/VanillaTweaks_r498624.zip"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "Cashton's Shader Packs (Requires Optifine)",
+                                "files": [
+                                    [
+                                        "shaderpacks\\BSL_v8.0.01.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937556969059942440/BSL_v8.0.01.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\Chocapic13_V9_Extreme.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557008540905472/Chocapic13_V9_Extreme.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\Chocapic13_V9_High.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557051545116723/Chocapic13_V9_High.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\Chocapic13_V9_Low.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557102753382400/Chocapic13_V9_Low.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\Chocapic13_V9_Medium.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557152464244736/Chocapic13_V9_Medium.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\Chocapic13_V9_Ultra.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557195174850580/Chocapic13_V9_Ultra.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\continuum-2.0.4.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557256801759282/continuum-2.0.4.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\SEUS-Renewed-v1.0.1.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557303173971998/SEUS-Renewed-v1.0.1.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\Sildurs Vibrant Shaders v1.281 High.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557346333368421/Sildurs_Vibrant_Shaders_v1.281_High.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\Sildurs Vibrant Shaders v1.283 Extreme-VL.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557447407697980/Sildurs_Vibrant_Shaders_v1.283_Extreme-VL.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\Sildurs Vibrant Shaders v1.283 Extreme.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557403157807104/Sildurs_Vibrant_Shaders_v1.283_Extreme.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\Sildurs Vibrant Shaders v1.283 Lite.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557493930922004/Sildurs_Vibrant_Shaders_v1.283_Lite.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\Sildurs Vibrant Shaders v1.283 Medium.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557824949583924/Sildurs_Vibrant_Shaders_v1.283_Medium.zip"
+                                    ],
+                                    [
+                                        "shaderpacks\\VPlus_v2.3a.zip",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937557872630448150/VPlus_v2.3a.zip"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "Optifine G8",
+                                "files": [
+                                    [
+                                        "mods/OptiFine_1.16.5_HD_U_G8.jar",
+                                        "https://cdn.discordapp.com/attachments/937556237015457844/937556333996154940/optifabric-1.12.10.jar"
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}
