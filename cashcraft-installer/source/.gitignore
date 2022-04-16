@@ -2,3 +2,4 @@ installer
 *dist
 *.spec
 *build
+*.log

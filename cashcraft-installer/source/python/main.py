@@ -54,7 +54,7 @@ def update_info_label(text):
 def download_package():
 
     for file in addon_package['files']:
-        print('\t\t\t{}'.format(file[0]))
+        print(file[0])
         update_info_label('Downloading {}'.format(file[0]))
         r = requests.get(file[1], allow_redirects=True)
         open(dataPath + '\\' + file[0], 'wb').write(r.content)
@@ -198,7 +198,7 @@ def install():
     for contentItem in selectedVersion['content']['required']:
         print('\t\t{}'.format(contentItem['name']))
         for file in contentItem['files']:
-            update_info_label('Installing: {}'.format(file[0]))
+            update_info_label(file[0])
             r = requests.get(file[1], allow_redirects=True)
             open(dataPath + '\\' + file[0], 'wb').write(r.content)
 
@@ -218,7 +218,8 @@ def install():
         "icon": selectedVersion['icon'],
         "name": selected_server['name'] + ' ' + selectedVersion['name'],
         "lastVersionId": selectedVersion['mcVersionId'],
-        "type": "custom"
+        "type": "custom",
+        "javaArgs": selectedVersion['javaArgs'],
     }
     open(mcPath + '\\launcher_profiles.json', 'w').write(dumps(launcherJson, indent=4))
 

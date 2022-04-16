@@ -20,7 +20,8 @@
                         "mods"
                     ],
                     "loaderArgs": "",
-                    "mcVersionId": "1.16.5-forge-36.2.8",
+                    "mcVersionId": "1.16.5-forge-36.2.21",
+                    "javaArgs": "-Xmx4G -Xms4G -XX:+UseZGC",
                     "content": {
                         "required": [
                             {
@@ -713,6 +714,105 @@
                                     [
                                         "mods\\[1.16.5]LagMeter-1.3.6.jar",
                                         "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/[1.16.5]LagMeter-1.3.6.jar"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "comforts-forge-1.16.5-4.0.1.5.jar",
+                                "files": [
+                                    [
+                                        "mods\\comforts-forge-1.16.5-4.0.1.5.jar",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/comforts-forge-1.16.5-4.0.1.5.jar"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "DarkPaintings-1.16.5-6.0.11.jar",
+                                "files": [
+                                    [
+                                        "mods\\DarkPaintings-1.16.5-6.0.11.jar",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/DarkPaintings-1.16.5-6.0.11.jar"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "desktop.ini",
+                                "files": [
+                                    [
+                                        "mods\\desktop.ini",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/desktop.ini"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "goblintraders-1.6.0-1.16.3.jar",
+                                "files": [
+                                    [
+                                        "mods\\goblintraders-1.6.0-1.16.3.jar",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/goblintraders-1.6.0-1.16.3.jar"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "growablecells-1.16.5-1.3.0.jar",
+                                "files": [
+                                    [
+                                        "mods\\growablecells-1.16.5-1.3.0.jar",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/growablecells-1.16.5-1.3.0.jar"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "MmmMmmMmmMmm-1.16.5-1.3.1.jar",
+                                "files": [
+                                    [
+                                        "mods\\MmmMmmMmmMmm-1.16.5-1.3.1.jar",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/MmmMmmMmmMmm-1.16.5-1.3.1.jar"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "redstonepen-1.16.5-1.0.7.jar",
+                                "files": [
+                                    [
+                                        "mods\\redstonepen-1.16.5-1.0.7.jar",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/redstonepen-1.16.5-1.0.7.jar"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "rsgauges-1.16.5-1.2.15.jar",
+                                "files": [
+                                    [
+                                        "mods\\rsgauges-1.16.5-1.2.15.jar",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/rsgauges-1.16.5-1.2.15.jar"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "Trapcraft-1.16.5-3.3.1.jar",
+                                "files": [
+                                    [
+                                        "mods\\Trapcraft-1.16.5-3.3.1.jar",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/Trapcraft-1.16.5-3.3.1.jar"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "Uppers-0.3.2.jar",
+                                "files": [
+                                    [
+                                        "mods\\Uppers-0.3.2.jar",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/Uppers-0.3.2.jar"
+                                    ]
+                                ]
+                            },
+                            {
+                                "name": "[1.16.4]+MassInscriber-0.1.jar",
+                                "files": [
+                                    [
+                                        "mods\\[1.16.4]+MassInscriber-0.1.jar",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/[1.16.4]+MassInscriber-0.1.jar"
                                     ]
                                 ]
                             }
