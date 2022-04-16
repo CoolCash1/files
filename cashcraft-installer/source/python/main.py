@@ -48,14 +48,20 @@ def test_screen():
 
     window.mainloop()
 
+def update_info_label(text):
+    info_label['text'] = text
+
 def download_package():
 
     for file in addon_package['files']:
         print('\t\t\t{}'.format(file[0]))
+        update_info_label('Downloading {}'.format(file[0]))
         r = requests.get(file[1], allow_redirects=True)
         open(dataPath + '\\' + file[0], 'wb').write(r.content)
 
-    confirm_window.destroy()
+    try:
+        confirm_window.destroy()
+    except: pass
 
 def confirm_package():
 
@@ -79,7 +85,7 @@ def confirm_package():
 
 installer_file = {}
 try:
-    if False:
+    if True:
         installer_file = loads(open('C:\\Users\\casht\\Projects\\mc-pinger-2000-discord-edition\\files\\cashcraft-installer\\client\\installer.json').read())
 
     else:
@@ -151,8 +157,10 @@ def try_install():
 def install():
     if not path.exists(mcPath + "\\launcher_profiles.json"):
         print('MC Launcher Not Detected! Quiting')
+        update_info_label('Error: Minecraft launcher was not found.')
         return 
     print('Installing Cashtons Minecraft Server Client. Please Wait...')
+    update_info_label('Installing...')
     selectedVersion = installer_file['servers'][server_clicked.get()]['versions'][version_clicked.get()]
     if not path.exists(dataPath):
         print('\tCreating Data Folder... ({})'.format(dataPath))
@@ -160,16 +168,19 @@ def install():
 
     if not path.exists(mcPath + '\\versions\\' + selectedVersion['mcVersionId']):  
         print('\tDownloading Loader...')
+        update_info_label('Downloading Mod Loader...')
         r = requests.get(selectedVersion['loaderInstall'], allow_redirects=True)
         open(dataPath + '\\' + 'loader.jar', 'wb').write(r.content)
 
         print('\tInstalling Loader...')
+        update_info_label('Installing Mod Loader...')
         system('java -jar "' + dataPath + '\\' + 'loader.jar" {}'.format(selectedVersion['loaderArgs']))
 
     else:
         print('\tLoader already installed. Skipping loader installation process.')
 
     print('\tPreping File System...')
+    update_info_label('Preparing File System...')
     for folder in selectedVersion['deleteFolders']:
         folderLoaction = dataPath + '\\' + folder
         print('\t\tDELETE {}'.format(folderLoaction))
@@ -187,29 +198,32 @@ def install():
     for contentItem in selectedVersion['content']['required']:
         print('\t\t{}'.format(contentItem['name']))
         for file in contentItem['files']:
-            print('\t\t\t{}'.format(file[0]))
+            update_info_label('Installing: {}'.format(file[0]))
             r = requests.get(file[1], allow_redirects=True)
             open(dataPath + '\\' + file[0], 'wb').write(r.content)
 
     print('\n\tTime to install optional features.')
 
     for contentItem in selectedVersion['content']['optional']:
+        update_info_label('Waiting for user input...')
         global addon_package
         addon_package = contentItem
         confirm_package()
 
     print('Adding profile to launcher')
+    update_info_label('Adding profile to launcher')
     launcherJson = loads(open(mcPath + '\\launcher_profiles.json').read())
     launcherJson['profiles']['CashCraft'] = {
         "gameDir": dataPath,
         "icon": selectedVersion['icon'],
-        "name": selectedVersion['name'],
+        "name": selected_server['name'] + ' ' + selectedVersion['name'],
         "lastVersionId": selectedVersion['mcVersionId'],
         "type": "custom"
     }
     open(mcPath + '\\launcher_profiles.json', 'w').write(dumps(launcherJson, indent=4))
 
     print('Finishing up...')
+    update_info_label('Finishing up...')
     if not path.exists(dataPath + '\\options.txt'):
         if path.exists(mcPath + '\\options.txt'):
             copyfile(mcPath + '\\options.txt', dataPath + '\\options.txt')
@@ -223,7 +237,7 @@ def install():
             copyfile(mcPath + '\\servers.dat', dataPath + '\\servers.dat')
 
     print('Done!')
-
+    update_info_label('Install Finished!')
 
 
 window = tk.Tk()
@@ -243,6 +257,9 @@ version_clicked = tk.StringVar()
 version_clicked.set( version_list[-1] )
 version_drop = tk.OptionMenu( window , version_clicked , *version_list )
 version_drop.pack()
+
+info_label = tk.Label(text="Ready to install.")
+info_label.pack()
 
 frame = tk.Frame(window)  
 frame.pack()
