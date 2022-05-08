@@ -14,7 +14,7 @@ while True:
     else:
         print('Invalid Path')
 
-mcSubdir = input('What Minecraft subdirectory should these files be contained in? ') + '\\'
+mcSubdir = input('What Minecraft subdirectory should these files be contained in? ') + '/'
 
 urlPrefix = input('Where online where these files be stored? ')
 if not urlPrefix[-1] == '/':

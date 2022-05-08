@@ -85,7 +85,7 @@ def confirm_package():
 
 installer_file = {}
 try:
-    if True:
+    if False:
         installer_file = loads(open('C:\\Users\\casht\\Projects\\mc-pinger-2000-discord-edition\\files\\cashcraft-installer\\client\\installer.json').read())
 
     else:
