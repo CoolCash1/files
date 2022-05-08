@@ -1139,6 +1139,15 @@
                     "content": {
                         "required": [
                             {
+                                "name": "YungsApi-1.16.4-Forge-13.jar",
+                                "files": [
+                                    [
+                                        "mods\\YungsApi-1.16.4-Forge-13.jar",
+                                        "https://github.com/CoolCash1/files/raw/main/cashcraft-installer/client/resources/required/mods/YungsApi-1.16.4-Forge-13.jar"
+                                    ]
+                                ]
+                            },
+                            {
                                 "name": "additional-guns-0.5.1-1.16.5.jar",
                                 "files": [
                                     [
