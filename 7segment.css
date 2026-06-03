@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('https://github.com/CoolCash1/files/raw/refs/heads/main/Seven%20Segment.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Shows fallback text while loading */
+}
